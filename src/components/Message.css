@@ -1,11 +1,6 @@
-.message{
-    display: flex;
-    align-items: center;
-    padding: 20px;
-}
+.item{
+    /* border: 2px solid black !important; */
+    padding: 8px !important;
+    box-shadow: black !important;
 
-.message > img {
-    height: 50px;
-    width: 50px;
-    object-fit: contain;
 }

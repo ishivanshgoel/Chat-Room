@@ -1,41 +1,34 @@
 import React from 'react'
 import "./SidebarOption.css"
-import {useHistory} from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import db from './firebase'
-function SidebarOption({Icon,title,id,addChannelOption}) {
- 
+function SidebarOption({ Icon, title, id, addChannelOption }) {
+
     const history = useHistory();
 
-    const selectChannel = ()=>{
-        if(id) {
+    const selectChannel = () => {
+        if (id) {
             history.push(`/room/${id}`);
-        } else{
+        } else {
             history.push(title);
         }
     };
 
-    const addChannel = ()=>{
-        const channelName=prompt("Please enter the channel name ");
-        if(channelName){
+    const addChannel = () => {
+        const channelName = prompt("Please enter the channel name ");
+        if (channelName) {
             db.collection('rooms').add({
-                name:channelName
+                name: channelName
             })
         }
     }
 
-    
-
     return (
-        <div className="sidebarOption" onClick={addChannelOption ? addChannel : selectChannel }>
-            {Icon && <Icon className="sidebarOption__icon"/>}
-            {Icon ? (
-                <h3> {title}</h3>
-            ):(
-                <h3 className="sidebarOption__channel">
-                    <span className="sidebarOption__hash"> # </span>
-                     {title}
-                </h3>
-            )}
+        <div className="row sidebarOption">
+            <div class="sixteen wide column sidebarOption__icon" onClick={addChannelOption ? addChannel : selectChannel}>
+                {Icon ? <span>{Icon}  {title}</span> : <span> <i class="comment icon"></i>  {title} </span>}
+            </div>
+           
         </div>
     )
 }

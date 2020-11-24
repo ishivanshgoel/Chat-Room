@@ -18,20 +18,22 @@ function ChatInput({channelName,channelId}) {
                 user: user.displayName,
                 userImage: user.photoURL
             })
+           
         }
         else{
-            console.log("Channel id nhi mili")
+            console.log("Didn't get channel Id")
         }
     }
 
-
     return (
-        <div className="chatInput">
-            <form>
+        
+            <div className="ui fluid icon input">
                 <input placeholder={`Message ${channelName}`} type="text" onChange={(e)=>setInput(e.target.value)}/>
-                <button onClick={sendMessage}>Send</button>
-            </form>
-        </div>
+                <button className="circular ui icon button chat__sendButton" onClick={sendMessage}>
+                    <i className="paper plane outline icon"></i>
+                </button>
+            </div>
+        
     )
 }
 

@@ -1,60 +1,54 @@
-import { FiberManualRecord } from '@material-ui/icons';
 import React from 'react'
-import {useState,useEffect} from 'react'
-import './Sidebar.css';
-import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord"
-import CreateIcon from "@material-ui/icons/Create"
+import { useState, useEffect } from 'react'
 import SidebarOption from "./SidebarOption"
-import InsertCommentIcon from "@material-ui/icons/InsertComment"
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
-import ExpandLessIcon from "@material-ui/icons/ExpandLess"
-import AddIcon from "@material-ui/icons/Add"
+import "./Sidebar.css"
 import db from './firebase';
-import {useStateValue} from "./StateProvider"
+import { useStateValue } from "./StateProvider"
 
 function Sidebar() {
-    const[channels,setChannel] = useState([]);
-    const[{user}]=useStateValue();
+    const [channels, setChannel] = useState([]);
+    const [{ user }] = useStateValue();
 
-    useEffect(()=>{
+    useEffect(() => {
         // Run this code when the sidebar compnent loads
-        db.collection('rooms').onSnapshot(snapshot=>{
-            setChannel(snapshot.docs.map(doc=>{
+        db.collection('rooms').onSnapshot(snapshot => {
+            setChannel(snapshot.docs.map(doc => {
                 return (
                     {
-                        id:doc.id,
-                        name:doc.data().name
+                        id: doc.id,
+                        name: doc.data().name
                     }
                 )
             }))
         })
-    },[])
+    }, [])
 
     return (
         <div className="sidebar">
             <div className="sidebar__header">
-                <div className="sidebar__info">
-                    <h2>Clever Programmer</h2>
-                    <h3>
-                        <FiberManualRecordIcon />
-                        {user.displayName}
-                    </h3>
+                <div className="sidebar__headerImage">
+                    <img class="ui tiny circular image" src={user.photoURL}/>
                 </div>
-                <CreateIcon />
+                <div className="sidebar__headerName">
+                    <h4><b>{user.displayName}</b></h4>
+                </div>
             </div>
-            <SidebarOption Icon={InsertCommentIcon} title="Thread" />
-            <SidebarOption title="Youtube" />
-            <SidebarOption title="You" />
-            <SidebarOption Icon={InsertCommentIcon} title="Threads" />
-            <SidebarOption title="Youtubes" />
-            <SidebarOption Icon={ExpandLessIcon} title="Show Less" />
-            <SidebarOption Icon={ExpandMoreIcon} title="Channels" />
-            <SidebarOption Icon={AddIcon} addChannelOption='ok' title="Add Channel" />
-            {/*Connect to db and list all  the channels */}
-            {/* <Sidebar Options... /> */}
-            {channels.map(channel =>{
-                return <SidebarOption title={channel.name} id={channel.id} />
-            })}
+            <div className="ui internally celled grid">
+
+                <SidebarOption Icon={<i class="building outline icon"></i>} title="Announcements" />
+                <SidebarOption Icon={<i class="code icon"></i>} title="General" />
+                <SidebarOption Icon={<i class="coffee icon"></i>}title="Off Topic" />
+                <SidebarOption Icon={<i class="book icon"></i>} title="Rules" />
+                <SidebarOption Icon={<i class="linkify icon"></i>} title="Links" />
+                <SidebarOption Icon={<i class="plus square outline icon"></i>} addChannelOption='ok' title="Add Channel" />
+                {/*Connect to db and list all  the channels */}
+                {/* <Sidebar Options... /> */}
+                {channels.map(channel => {
+                    return <SidebarOption title={channel.name} id={channel.id} />
+                })}
+
+            </div>
+
         </div>
     )
 }
