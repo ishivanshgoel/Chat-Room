@@ -35,12 +35,12 @@ function Sidebar() {
             </div>
             <div className="ui internally celled grid">
 
-                <SidebarOption Icon={<i class="building outline icon"></i>} title="Announcements" />
-                <SidebarOption Icon={<i class="code icon"></i>} title="General" />
-                <SidebarOption Icon={<i class="coffee icon"></i>}title="Off Topic" />
-                <SidebarOption Icon={<i class="book icon"></i>} title="Rules" />
-                <SidebarOption Icon={<i class="linkify icon"></i>} title="Links" />
-                <SidebarOption Icon={<i class="plus square outline icon"></i>} addChannelOption='ok' title="Add Channel" />
+                <SidebarOption Icon={<i class="building outline icon"></i>} title="Announcements" id="1" />
+                <SidebarOption Icon={<i class="code icon"></i>} title="General" id="2" />
+                <SidebarOption Icon={<i class="coffee icon"></i>}title="Off Topic" id="3" />
+                <SidebarOption Icon={<i class="book icon"></i>} title="Rules" id="4" />
+                <SidebarOption Icon={<i class="linkify icon"></i>} title="Links" id="5" />
+                <SidebarOption Icon={<i class="plus square outline icon"></i>} addChannelOption='ok' title="Add Channel" id="6" />
                 {/*Connect to db and list all  the channels */}
                 {/* <Sidebar Options... /> */}
                 {channels.map(channel => {

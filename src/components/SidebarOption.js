@@ -25,7 +25,7 @@ function SidebarOption({ Icon, title, id, addChannelOption }) {
 
     return (
         <div className="row sidebarOption">
-            <div class="sixteen wide column sidebarOption__icon" onClick={addChannelOption ? addChannel : selectChannel}>
+            <div class="sixteen wide column sidebarOption__icon" onClick={addChannelOption ? addChannel : selectChannel} id={id}>
                 {Icon ? <span>{Icon}  {title}</span> : <span> <i class="comment icon"></i>  {title} </span>}
             </div>
            

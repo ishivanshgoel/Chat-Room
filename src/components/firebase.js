@@ -1,13 +1,16 @@
-import firebase from "firebase";
-import firebase_cred from "./firebase_cred.json"
+import firebase from "firebase/app";
 
-const firebaseConfig = JSON.parse(firebase_cred);
+import "firebase/auth";
+import "firebase/firestore";
 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+// firebase credentials
+const firebaseConfig = require('./firebase_cred.json')
 
-const db=firebaseApp.firestore();
-const auth=firebase.auth();
-const provider=new firebase.auth.GoogleAuthProvider();
+const app = firebase.initializeApp(firebaseConfig);
+
+const db = app.firestore();
+const auth = app.auth();
+const provider = new firebase.auth.GoogleAuthProvider();
 
 export {auth,provider};
 export default db;

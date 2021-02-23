@@ -32,7 +32,7 @@ function Chat() {
                 {
                     roomMessage.map(({ message, timeStamp, user, userImage }) => {
                         return (
-                            <Message message={message} timeStamp={timeStamp} user={user} userImage={userImage} /> 
+                            <Message message={message} timeStamp={timeStamp} user={user} userImage={userImage} id={message} /> 
                         )
                     })
                 }
